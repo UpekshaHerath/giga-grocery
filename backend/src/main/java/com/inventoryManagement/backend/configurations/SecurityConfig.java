@@ -31,12 +31,11 @@ public class SecurityConfig {
         return new InMemoryUserDetailsManager(admin, user);
     }
 
-
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("product/products").permitAll()
-                            .requestMatchers("/product/**").authenticated();
+                    auth.requestMatchers("product/products").permitAll();
+
                 }).build();
     }
 
